@@ -1,0 +1,63 @@
+.cardDiv {
+  background: linear-gradient(13deg, #d4ffdb 14%, #c7d9ff 73%);
+  background: -moz-linear-gradient(13deg, #d4ffdb 14%, #c7d9ff 73%);
+  background: -webkit-linear-gradient(13deg, #d4ffdb 14%, #c7d9ff 73%);
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 4px 4px 12px #e8e8e8;
+  padding: 2.5rem;
+  margin: 2.5rem;
+  text-align: center;
+}
+
+.cardInputDiv {
+  background: #ffe0f5;
+  background: linear-gradient(304deg, #fcf1d2 36%, #ffe0f5 56%);
+  background: -moz-linear-gradient(304deg, #fcf1d2 36%, #ffe0f5 56%);
+  background: -webkit-linear-gradient(304deg, #fcf1d2 36%, #ffe0f5 56%);
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 4px 4px 12px #e8e8e8;
+  text-align: center;
+  padding: 2.5rem;
+  margin: 2.5rem;
+}
+
+.sortButton {
+  background: #e0e7ff;
+  background: linear-gradient(150deg, #e0e7ff 18%, #d2dbfc 77%);
+  background: -moz-linear-gradient(150deg, #e0e7ff 18%, #d2dbfc 77%);
+  background: -webkit-linear-gradient(150deg, #e0e7ff 18%, #d2dbfc 77%);
+
+  padding: 1.2rem;
+}
+
+.sortButtonText {
+  // @apply m-5;
+  padding: 1rem;
+}
+
+.resultDiv {
+  background: linear-gradient(13deg, #ffd4f4 14%, #d2c5fc 73%);
+  background: -moz-linear-gradient(13deg, #ffd4f4 14%, #d2c5fc 73%);
+  background: -webkit-linear-gradient(13deg, #ffd4f4 14%, #d2c5fc 73%);
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 3px 3px 6px #e8e8e8;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-gap: 10px;
+  text-align: center;
+  padding: 2rem;
+  margin: 2.5rem;
+}
+
+.resultItem {
+  border-radius: 7px;
+  padding: 2.5rem;
+}
+
+.navigation {
+  text-align: center;
+}
+
+.text_center {
+  text-align: center;
+}
