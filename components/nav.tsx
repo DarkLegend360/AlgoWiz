@@ -22,7 +22,7 @@ export function Nav() {
                     </Typography></a>
                 </Link>
 
-                <Link href="/sort">
+                <Link href="/sorting">
                     <a><Typography variant="h6" style={{paddingRight: "40px", ...Pangolin}}>
                         <BrowserView>
                             Sorting Visualization
@@ -32,7 +32,16 @@ export function Nav() {
                         </MobileView>
                     </Typography></a>
                 </Link>
-
+                <Link href="/searching">
+                    <a><Typography variant="h6" style={{paddingRight: "40px", ...Pangolin}}>
+                        <BrowserView>
+                            Searching Visualization
+                        </BrowserView>
+                        <MobileView>
+                            Searching
+                        </MobileView>
+                    </Typography></a>
+                </Link>
             </Toolbar>
         </AppBar>
     );
