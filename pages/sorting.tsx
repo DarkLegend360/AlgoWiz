@@ -20,9 +20,10 @@ import selectionSort from "../algorithms/sort/selection"
 
 export default function SortPage() {
     const [items, setItems] = useState(SortDefault);
-    const [iter, setIter] = useState(new ItemIterator([] as Step[]));
-    const [current, setCurrent] = useState([] as NumberWithKey[]);
+    const [iter, setIter] = useState(new ItemIterator([]));
+    const [current, setCurrent] = useState([]);
     const [why, setWhy] = useState("");
+
 
     useEffect(() => {
         setCurrent(iter.current.list);
@@ -47,11 +48,11 @@ export default function SortPage() {
         result = result.map(function (w) {
             return {
                 list: w.list.map(function (x) {
-                        return {n: x.Value, key: x.Key, color: x.Color} as NumberWithKey;
+                        return {n: x.Value, key: x.Key, color: x.Color};
                     }
                 ),
                 why: w.why
-            } as Step;
+            };
         });
         setIter(new ItemIterator(result));
     }

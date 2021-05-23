@@ -20,9 +20,9 @@ import binarySearch from "../algorithms/search/binary"
 
 export default function BubblePage() {
     const [items, setItems] = useState(SortDefault);
-    const [iter, setIter] = useState(new ItemIterator([] as Step[]));
+    const [iter, setIter] = useState(new ItemIterator([]));
     const [target, setTarget] = useState(5);
-    const [current, setCurrent] = useState([] as NumberWithKey[]);
+    const [current, setCurrent] = useState([]);
     const [why, setWhy] = useState("");
 
     useEffect(() => {
@@ -50,11 +50,11 @@ export default function BubblePage() {
         result = result.map(function (w) {
             return {
                 list: w.list.map(function (x) {
-                        return {n: x.Value, key: x.Key, color: x.Color} as NumberWithKey;
+                        return {n: x.Value, key: x.Key, color: x.Color};
                     }
                 ),
                 why: w.why
-            } as Step;
+            };
         });
         setIter(new ItemIterator(result));
     }
