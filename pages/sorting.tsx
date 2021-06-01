@@ -15,8 +15,10 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import {NAME, SortDefault} from "../config/config";
 import ListInput from "../components/listInput";
 
-import bubbleSort from "../algorithms/sort/bubble"
-import selectionSort from "../algorithms/sort/selection"
+import bubbleSort from "../algorithms/sort/bubble";
+import selectionSort from "../algorithms/sort/selection";
+import quickSort from "../algorithms/sort/quick";
+import insertionSort from "../algorithms/sort/insertion";
 
 export default function SortPage() {
     const [items, setItems] = useState(SortDefault);
@@ -44,7 +46,10 @@ export default function SortPage() {
             result = bubbleSort(items);
         else if(name=="selection")
             result = selectionSort(items);
-        
+        else if(name=="insertion")
+            result = insertionSort(items);
+        else if(name=="quick")
+            result = quickSort(items);
         result = result.map(function (w) {
             return {
                 list: w.list.map(function (x) {

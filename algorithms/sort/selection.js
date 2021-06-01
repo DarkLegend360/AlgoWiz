@@ -26,6 +26,7 @@ export default function selectionSort(arr) {
         var minIndex = i;
         for(var j=i+1;j<arr.length;j++) {
             if(arr[minIndex].Value>arr[j].Value) {
+                var prev = minIndex;
                 minIndex=j;
                 let temp = makeCopy(arr);
                 temp[j].Color = "#c0deff";
@@ -33,7 +34,7 @@ export default function selectionSort(arr) {
                 temp[minIndex].Color = "#55efc4";
                 result.push({
                     list:temp,
-                    why:`${arr[minIndex].Value} > ${arr[j].Value}, Select ${arr[j].Value} as minElement!`
+                    why:`${arr[prev].Value}(CurrentMinElement) > ${arr[j].Value}(CurrentElement), Select ${arr[j].Value} as minElement!`
                 });
             } else {
                 let temp = makeCopy(arr);
@@ -42,7 +43,7 @@ export default function selectionSort(arr) {
                 temp[minIndex].Color = "#55efc4";
                 result.push({
                     list:temp,
-                    why:`${arr[minIndex].Value} < ${arr[j].Value}, No Change!`
+                    why:`${arr[minIndex].Value}(minElement) < ${arr[j].Value}(CurrentElement), No Change!`
                 });
             }
         }

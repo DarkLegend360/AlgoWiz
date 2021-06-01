@@ -24,7 +24,8 @@ export default function bubbleSort(arr) {
     });
 
     var swapped = true;
-    for(var i=0;swapped;i++) {
+    var i=0;
+    for(i=0;swapped;i++) {
         swapped=false;
         for(var j=0;j<arr.length-1-i;j++) {
             if(arr[j].Value > arr[j+1].Value) {
@@ -47,17 +48,21 @@ export default function bubbleSort(arr) {
                 });
             }
         }
+        arr[arr.length-1-i].Color="#fd79a8";
         result.push({
             list:makeCopy(arr),
             why:`Iteration ${i+1} over!`
         });
     }
+    let temp = makeCopy(arr);
+    for(i=0;i<arr.length;i++)
+        temp[i].Color="#fd79a8";
     result.push({
-        list:makeCopy(arr),
+        list:temp,
         why:"Nothing swapped, which means the array is sorted!"
     });
     result.push({
-        list:makeCopy(arr),
+        list:temp,
         why:"Done"
     });
     return result;
