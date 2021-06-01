@@ -95,9 +95,7 @@ export default function BubblePage() {
                 {current ? current.map((e) =>
                     <div key={e.key} className={styles.resultItem} style={
                         {
-                            height: String(5 + 1.1 * current.map(x => x.n).sort(
-                                (a, b) => a - b
-                            ).indexOf(e.n)) + "rem",
+                            height: current.map(x => x.n) + "6rem",
                             backgroundColor: e.color,
                         }
                     }>

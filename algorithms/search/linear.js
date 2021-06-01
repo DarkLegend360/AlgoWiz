@@ -31,7 +31,6 @@ export default function linearSearch(arr, target) {
                 list:temp,
                 why:`${arr[i].Value} == ${target}, Matched!`
             });
-            break;
         } else {
             let temp = makeCopy(arr);
             temp[i].Color = "#c0deff";
