@@ -20,12 +20,14 @@ import selectionSort from "../algorithms/sort/selection";
 import quickSort from "../algorithms/sort/quick";
 import insertionSort from "../algorithms/sort/insertion";
 
+import {bubbleSortCode, selectionSortCode, insertionSortCode, quickSortCode} from "../pseudocode/sort";
+
 export default function SortPage() {
     const [items, setItems] = useState(SortDefault);
     const [iter, setIter] = useState(new ItemIterator([]));
     const [current, setCurrent] = useState([]);
     const [why, setWhy] = useState("");
-
+    const [code, setCode] = useState([]);
 
     useEffect(() => {
         setCurrent(iter.current.list);
@@ -42,14 +44,22 @@ export default function SortPage() {
 
     function fetchResult(name) {
         var result = [];
-        if(name=="bubble")
+        if(name=="bubble"){
             result = bubbleSort(items);
-        else if(name=="selection")
+            setCode(bubbleSortCode);
+        }
+        else if(name=="selection"){
             result = selectionSort(items);
-        else if(name=="insertion")
+            setCode(selectionSortCode);
+        }
+        else if(name=="insertion"){
             result = insertionSort(items);
-        else if(name=="quick")
+            setCode(insertionSortCode);
+        }
+        else if(name=="quick") {
             result = quickSort(items);
+            setCode(quickSortCode);
+        }
         result = result.map(function (w) {
             return {
                 list: w.list.map(function (x) {
@@ -66,85 +76,97 @@ export default function SortPage() {
             <title>{NAME} - Sorting Visualizing</title>
         </Head>
         <Nav/>
+        <div className={styles.mainCards}>
+            <div className={styles.cardInputDiv}>
+                <ListInput default={SortDefault} onChange={setItems}/>
 
-        <div className={styles.cardInputDiv}>
-            <ListInput default={SortDefault} onChange={setItems}/>
-
-            <br/>
-
-            <Button style={{...noBorder}} className={styles.sortButton} onClick={()=>fetchResult("bubble")}>
-                <Typography className={styles.sortButtonText}>
-                    <b>Bubble Sort</b>
-                </Typography>
-            </Button>
-
-            <Button style={{...noBorder, marginLeft: "20px"}} className={styles.sortButton} onClick={()=>fetchResult("selection")}>
-                <Typography className={styles.sortButtonText}>
-                    <b>Selection Sort</b>
-                </Typography>
-            </Button>
-
-            <Button style={{...noBorder, marginLeft: "20px"}} className={styles.sortButton} onClick={()=>fetchResult("insertion")}>
-                <Typography className={styles.sortButtonText}>
-                    <b>Insertion Sort</b>
-                </Typography>
-            </Button>
-
-            <Button style={{...noBorder, marginLeft: "20px"}} className={styles.sortButton} onClick={()=>fetchResult("quick")}>
-                <Typography className={styles.sortButtonText}>
-                    <b>Quick Sort</b>
-                </Typography>
-            </Button>
-        </div>
-
-        <div className={styles.cardDiv}>
-            <FlipMove className={styles.resultDiv}>
-                {current ? current.map((e) =>
-                    <div key={e.key} className={styles.resultItem} style={
-                        {
-                            height: String(5 + 1.1 * current.map(x => x.n).sort(
-                                (a, b) => a - b
-                            ).indexOf(e.n)) + "rem",
-                            backgroundColor: e.color,
-                        }
-                    }>
-                        <Typography style={{...OpenSans}} className="text-center">
-                            {e.n}
-                        </Typography>
-                    </div>) : null}
-            </FlipMove>
-
-            <div>
-                <Typography style={{...Roboto}} className="text-center">
-                    {why}
-                </Typography>
                 <br/>
+
+                <Button style={{...noBorder}} className={styles.sortButton} onClick={()=>fetchResult("bubble")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Bubble Sort</b>
+                    </Typography>
+                </Button>
+
+                <Button style={{...noBorder, marginLeft: "20px"}} className={styles.sortButton} onClick={()=>fetchResult("selection")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Selection Sort</b>
+                    </Typography>
+                </Button>
+
+                <Button style={{...noBorder, marginLeft: "20px"}} className={styles.sortButton} onClick={()=>fetchResult("insertion")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Insertion Sort</b>
+                    </Typography>
+                </Button>
+
+                <Button style={{...noBorder, marginLeft: "20px"}} className={styles.sortButton} onClick={()=>fetchResult("quick")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Quick Sort</b>
+                    </Typography>
+                </Button>
             </div>
 
-            <div className={styles.navigation}>
-                <Tooltip title="Reset">
-                    <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.start)}>
-                        <FirstPageIcon/>
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Previous Step">
-                    <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.back)}>
-                        <NavigateBeforeIcon/>
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Next Step">
-                    <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.next)}>
-                        <NavigateNextIcon/>
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Last Step">
-                    <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.end)}>
-                        <LastPageIcon/>
-                    </IconButton>
-                </Tooltip>
+            <div className={styles.cardDiv}>
+                <FlipMove className={styles.resultDiv}>
+                    {current ? current.map((e) =>
+                        <div key={e.key} className={styles.resultItem} style={
+                            {
+                                height: String(5 + 1.1 * current.map(x => x.n).sort(
+                                    (a, b) => a - b
+                                ).indexOf(e.n)) + "rem",
+                                backgroundColor: e.color,
+                            }
+                        }>
+                            <Typography style={{...OpenSans}} className="text-center">
+                                {e.n}
+                            </Typography>
+                        </div>) : null}
+                </FlipMove>
+
+                <div>
+                    <Typography style={{...Roboto}} className="text-center">
+                        {why}
+                    </Typography>
+                    <br/>
+                </div>
+
+                <div className={styles.navigation}>
+                    <Tooltip title="Reset">
+                        <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.start)}>
+                            <FirstPageIcon/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Previous Step">
+                        <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.back)}>
+                            <NavigateBeforeIcon/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Next Step">
+                        <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.next)}>
+                            <NavigateNextIcon/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Last Step">
+                        <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.end)}>
+                            <LastPageIcon/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
             </div>
         </div>
-
+        <div className={styles.codeInputDiv}>
+            {
+                code?code.map(item=> (
+                        <div className={styles.codeTextStyle}>
+                            <Typography className={styles.sortButtonText}>
+                                <b>{item}</b>
+                            </Typography>  
+                        </div>
+                    )
+                ):null
+            }
+        </div>
         <br/>
         <br/>
     </div>;

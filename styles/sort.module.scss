@@ -21,6 +21,30 @@
   margin: 2.5rem;
 }
 
+.codeInputDiv {
+  background: #ffe0f5;
+  background: linear-gradient(304deg, #fcf1d2 36%, #ffe0f5 56%);
+  background: -moz-linear-gradient(304deg, #fcf1d2 36%, #ffe0f5 56%);
+  background: -webkit-linear-gradient(304deg, #fcf1d2 36%, #ffe0f5 56%);
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 4px 4px 12px #e8e8e8;
+  text-align: center;
+  padding: 2.5rem;
+  margin: 2.5rem;
+  float: right;
+  width: 25%;
+  height: auto;
+}
+
+.mainCards {
+  width: 65%;
+  float: left;
+}
+
+.codeTextStyle {
+  text-align: justify;
+}
+
 .sortButton {
   background: #e0e7ff;
   background: linear-gradient(150deg, #e0e7ff 18%, #d2dbfc 77%);

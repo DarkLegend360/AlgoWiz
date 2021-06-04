@@ -18,12 +18,15 @@ import ListInput from "../components/listInput";
 import linearSearch from "../algorithms/search/linear"
 import binarySearch from "../algorithms/search/binary"
 
-export default function BubblePage() {
+import {linearSearchCode, binarySearchCode} from "../pseudocode/search";
+
+export default function SearchPage() {
     const [items, setItems] = useState(SortDefault);
     const [iter, setIter] = useState(new ItemIterator([]));
     const [target, setTarget] = useState(5);
     const [current, setCurrent] = useState([]);
     const [why, setWhy] = useState("");
+    const [code, setCode] = useState([]);
 
     useEffect(() => {
         setCurrent(iter.current.list);
@@ -41,10 +44,14 @@ export default function BubblePage() {
     function fetchResult(name) {
         var result = [];
         setTarget(5);
-        if(name=="linear")
+        if(name=="linear"){
             result = linearSearch(items, target);
-        else if(name=="binary")
+            setCode(linearSearchCode);
+        }
+        else if(name=="binary"){
             result = binarySearch(items, target);
+            setCode(binarySearchCode);
+        }
         console.log(result);
 
         result = result.map(function (w) {
@@ -63,7 +70,7 @@ export default function BubblePage() {
             <title>{NAME} - Searching Visualizing</title>
         </Head>
         <Nav/>
-
+        <div className={styles.mainCards}>
         <div className={styles.cardInputDiv}>
         <TextField id="filled-basic" 
             color="primary" 
@@ -135,7 +142,19 @@ export default function BubblePage() {
                 </Tooltip>
             </div>
         </div>
-
+        </div>
+        <div className={styles.codeInputDiv}>
+            {
+                code?code.map(item=> (
+                        <div className={styles.codeTextStyle}>
+                            <Typography className={styles.sortButtonText}>
+                                <b>{item}</b>
+                            </Typography>  
+                        </div>
+                    )
+                ):null
+            }
+        </div>
         <br/>
         <br/>
     </div>;
