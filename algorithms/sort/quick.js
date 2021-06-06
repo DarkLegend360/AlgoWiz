@@ -113,7 +113,7 @@ function quickSortHelper(arr, startIdx, endIdx) {
     result.push({
         list:makeCopy(arr),
         why:`Recursively Call on right side of Pivot!`,
-        line:14
+        line:15
     });
     quickSortHelper(arr,rightIdx+1,endIdx);
 }

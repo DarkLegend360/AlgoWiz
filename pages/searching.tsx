@@ -115,7 +115,31 @@ export default function SearchPage() {
         </Head>
         <Nav/>
         <div className={styles.mainCards}>
+        <div className={styles.cardInputDiv}>
+            <TextField id="filled-basic" 
+                color="primary" 
+                label="Target Element" 
+                variant="filled" 
+                size="small" 
+                value={`${target}`} 
+                onChange={(e)=>setTarget(Number(e.target.value))} 
+            />
+                <ListInput default={SortDefault} onChange={setItems}/>
+                
+                <br/>
 
+                <Button style={{...noBorder}} className={styles.sortButton} onClick={()=>fetchResult("linear")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Linear Search</b>
+                    </Typography>
+                </Button>
+
+                <Button style={{...noBorder, marginLeft: "20px"}} className={styles.sortButton} onClick={()=>fetchResult("binary")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Binary Search</b>
+                    </Typography>
+                </Button>
+            </div>
             <div className={styles.cardDiv}>
                 <FlipMove className={styles.resultDiv}>
                     {current ? current.map((e) =>
@@ -161,31 +185,6 @@ export default function SearchPage() {
                     </Tooltip>
                 </div>
                 <Legends />
-            </div>
-            <div className={styles.cardInputDiv}>
-            <TextField id="filled-basic" 
-                color="primary" 
-                label="Target Element" 
-                variant="filled" 
-                size="small" 
-                value={`${target}`} 
-                onChange={(e)=>setTarget(Number(e.target.value))} 
-            />
-                <ListInput default={SortDefault} onChange={setItems}/>
-                
-                <br/>
-
-                <Button style={{...noBorder}} className={styles.sortButton} onClick={()=>fetchResult("linear")}>
-                    <Typography className={styles.sortButtonText}>
-                        <b>Linear Search</b>
-                    </Typography>
-                </Button>
-
-                <Button style={{...noBorder, marginLeft: "20px"}} className={styles.sortButton} onClick={()=>fetchResult("binary")}>
-                    <Typography className={styles.sortButtonText}>
-                        <b>Binary Search</b>
-                    </Typography>
-                </Button>
             </div>
         </div>
         <CodeHighlighter />

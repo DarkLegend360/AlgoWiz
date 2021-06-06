@@ -76,7 +76,7 @@ export default function SortPage() {
                 code?code.map((item, idx)=> (
                         <div className={styles.Line} key={idx} >
                             {
-                                idx==line?
+                                idx==line? 
                                 <div style={{color:"#d63031"}} >{item}</div>
                              :
                             <div style={{color: "#6c5ce7"}}>{item}</div>
@@ -130,7 +130,35 @@ export default function SortPage() {
         </Head>
         <Nav/>
         <div className={styles.mainCards}>
+        <div className={styles.cardInputDiv}>
+                <ListInput default={SortDefault} onChange={setItems}/>
 
+                <br/>
+
+                <Button style={{...noBorder, marginLeft: "20px", marginTop:"20px"}} className={styles.sortButton} onClick={()=>fetchResult("bubble")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Bubble Sort</b>
+                    </Typography>
+                </Button>
+
+                <Button style={{...noBorder, marginLeft: "20px", marginTop:"20px"}} className={styles.sortButton} onClick={()=>fetchResult("selection")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Selection Sort</b>
+                    </Typography>
+                </Button>
+
+                <Button style={{...noBorder, marginLeft: "20px", marginTop:"20px"}} className={styles.sortButton} onClick={()=>fetchResult("insertion")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Insertion Sort</b>
+                    </Typography>
+                </Button>
+
+                <Button style={{...noBorder, marginLeft: "20px", marginTop:"20px"}} className={styles.sortButton} onClick={()=>fetchResult("quick")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Quick Sort</b>
+                    </Typography>
+                </Button>
+            </div>
             <div className={styles.cardDiv}>
                 <FlipMove className={styles.resultDiv}>
                     {current ? current.map((e) =>
@@ -178,35 +206,6 @@ export default function SortPage() {
                     </Tooltip>
                 </div>
                 <Legends />
-            </div>
-            <div className={styles.cardInputDiv}>
-                <ListInput default={SortDefault} onChange={setItems}/>
-
-                <br/>
-
-                <Button style={{...noBorder, marginLeft: "20px", marginTop:"20px"}} className={styles.sortButton} onClick={()=>fetchResult("bubble")}>
-                    <Typography className={styles.sortButtonText}>
-                        <b>Bubble Sort</b>
-                    </Typography>
-                </Button>
-
-                <Button style={{...noBorder, marginLeft: "20px", marginTop:"20px"}} className={styles.sortButton} onClick={()=>fetchResult("selection")}>
-                    <Typography className={styles.sortButtonText}>
-                        <b>Selection Sort</b>
-                    </Typography>
-                </Button>
-
-                <Button style={{...noBorder, marginLeft: "20px", marginTop:"20px"}} className={styles.sortButton} onClick={()=>fetchResult("insertion")}>
-                    <Typography className={styles.sortButtonText}>
-                        <b>Insertion Sort</b>
-                    </Typography>
-                </Button>
-
-                <Button style={{...noBorder, marginLeft: "20px", marginTop:"20px"}} className={styles.sortButton} onClick={()=>fetchResult("quick")}>
-                    <Typography className={styles.sortButtonText}>
-                        <b>Quick Sort</b>
-                    </Typography>
-                </Button>
             </div>
         </div>
         <CodeHighlighter />
