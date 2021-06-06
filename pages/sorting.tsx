@@ -28,6 +28,7 @@ export default function SortPage() {
     const [current, setCurrent] = useState([]);
     const [why, setWhy] = useState("");
     const [code, setCode] = useState([]);
+    const [isSelection, setSelection] = useState(false);
 
     useEffect(() => {
         setCurrent(iter.current.list);
@@ -41,9 +42,29 @@ export default function SortPage() {
             setWhy(iter.current.why);
         };
     }
-
+    function Legends() {
+        return (
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between",}} className={styles.legendInfo}>
+            <div>Legend:</div>
+            <div style={{display:"flex",flexDirection: "row",}}>
+            <div style={{backgroundColor:"#c0deff",height:"20px",width:"20px",marginRight:"5px"}} />
+            - Current Selection</div>
+            {
+                isSelection?<div style={{display:"flex",flexDirection: "row",}}>
+                <div style={{backgroundColor:"#55efc4",height:"20px",width:"20px",marginRight:"5px"}} />
+                - Current Min Element</div>:null
+            }
+            <div style={{display:"flex",flexDirection: "row",}}>
+            <div style={{backgroundColor:"#fd79a8",height:"20px",width:"20px",marginRight:"5px"}} />
+            - Sorted Element</div>
+        </div>
+        )
+    }
+    var curMode=null;
     function fetchResult(name) {
+        setSelection(false);
         var result = [];
+        curMode=name;
         if(name=="bubble"){
             result = bubbleSort(items);
             setCode(bubbleSortCode);
@@ -51,6 +72,7 @@ export default function SortPage() {
         else if(name=="selection"){
             result = selectionSort(items);
             setCode(selectionSortCode);
+            setSelection(true);
         }
         else if(name=="insertion"){
             result = insertionSort(items);
@@ -153,6 +175,7 @@ export default function SortPage() {
                         </IconButton>
                     </Tooltip>
                 </div>
+                <Legends />
             </div>
         </div>
         <div className={styles.codeInputDiv}>

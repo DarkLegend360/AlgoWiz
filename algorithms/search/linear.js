@@ -25,8 +25,8 @@ export default function linearSearch(arr, target) {
 
     for(var i=0;i<arr.length;i++) {
         if(arr[i].Value==target) {
+            arr[i].Color = "#fd79a8";
             let temp = makeCopy(arr);
-            temp[i].Color = "#fd79a8";
             result.push({
                 list:temp,
                 why:`${arr[i].Value} == ${target}, Matched!`

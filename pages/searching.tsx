@@ -27,6 +27,7 @@ export default function SearchPage() {
     const [current, setCurrent] = useState([]);
     const [why, setWhy] = useState("");
     const [code, setCode] = useState([]);
+    const [isBinary, setBinary] = useState(false);
 
     useEffect(() => {
         setCurrent(iter.current.list);
@@ -41,9 +42,44 @@ export default function SearchPage() {
         };
     }
 
+    function Legends(props) {
+        return (
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between",}} className={styles.legendInfo}>
+                    <div>Legend:</div>
+                    <div style={{display:"flex",flexDirection: "row",}}>
+                    <div style={{backgroundColor:"#c0deff",height:"20px",width:"20px",marginRight:"5px"}} />
+                    - Current Selections</div>
+                    {
+                    isBinary?<div style={{display:"flex",flexDirection: "row",}}>
+                    <div style={{backgroundColor:"#55efc4",height:"20px",width:"20px",marginRight:"5px"}} />
+                    - Middle Element</div>:null
+                    }
+                    <div style={{display:"flex",flexDirection: "row",}}>
+                    <div style={{backgroundColor:"#fd79a8",height:"20px",width:"20px",marginRight:"5px"}} />
+                    - Matched Element</div>
+            </div>
+        );
+    }
+    function CodeHighlighter() {
+        return (
+            <div className={styles.codeInputDiv}>
+            {
+                code?code.map(item=> (
+                        <div className={styles.codeTextStyle}>
+                            <Typography className={styles.sortButtonText}>
+                                <b>{item}</b>
+                            </Typography>  
+                        </div>
+                    )
+                ):null
+            }
+        </div>
+        )
+    }
+
     function fetchResult(name) {
         var result = [];
-        setTarget(5);
+        setBinary(false);
         if(name=="linear"){
             result = linearSearch(items, target);
             setCode(linearSearchCode);
@@ -51,6 +87,7 @@ export default function SearchPage() {
         else if(name=="binary"){
             result = binarySearch(items, target);
             setCode(binarySearchCode);
+            setBinary(true);
         }
         console.log(result);
 
@@ -141,20 +178,10 @@ export default function SearchPage() {
                     </IconButton>
                 </Tooltip>
             </div>
+            <Legends />
         </div>
         </div>
-        <div className={styles.codeInputDiv}>
-            {
-                code?code.map(item=> (
-                        <div className={styles.codeTextStyle}>
-                            <Typography className={styles.sortButtonText}>
-                                <b>{item}</b>
-                            </Typography>  
-                        </div>
-                    )
-                ):null
-            }
-        </div>
+        <CodeHighlighter />
         <br/>
         <br/>
     </div>;

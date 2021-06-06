@@ -30,9 +30,9 @@ export default function linearSearch(arr, target) {
         console.log(middleIdx);
         if(arr[middleIdx].Value==target) {
             let temp = makeCopy(arr);
-            temp[leftIdx].Color="#fd79a8";
-            temp[rightIdx].Color="#fd79a8";
-            temp[middleIdx].Color = "#55efc4";
+            temp[leftIdx].Color="#c0deff";
+            temp[rightIdx].Color="#c0deff";
+            temp[middleIdx].Color = "#fd79a8";
             result.push({
                 list:temp,
                 why:`${arr[middleIdx].Value} == ${target}, Matched!`
@@ -40,8 +40,8 @@ export default function linearSearch(arr, target) {
             break;
         } else if(arr[middleIdx].Value>target) {
             let temp = makeCopy(arr);
-            temp[leftIdx].Color="#fd79a8";
-            temp[rightIdx].Color="#fd79a8";
+            temp[leftIdx].Color="#c0deff";
+            temp[rightIdx].Color="#c0deff";
             temp[middleIdx].Color = "#55efc4";
             result.push({
                 list:temp,
@@ -50,8 +50,8 @@ export default function linearSearch(arr, target) {
             rightIdx=middleIdx-1;
         } else {
             let temp = makeCopy(arr);
-            temp[leftIdx].Color="#fd79a8";
-            temp[rightIdx].Color="#fd79a8";
+            temp[leftIdx].Color="#c0deff";
+            temp[rightIdx].Color="#c0deff";
             temp[middleIdx].Color = "#55efc4";
             result.push({
                 list:temp,
