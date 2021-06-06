@@ -21,6 +21,27 @@
   margin: 2.5rem;
 }
 
+.Line {
+  color: "#ffc048";
+  font-family: sans-serif;
+  padding: 0 20px;
+  font-size: 17px;
+  font-weight: bolder;
+  text-align: justify;
+  line-height: 45px;
+}
+
+.homePageDiv {
+  background: linear-gradient(13deg, #ffd4f4 14%, #d2c5fc 73%);
+  background: -moz-linear-gradient(13deg, #ffd4f4 14%, #d2c5fc 73%);
+  background: -webkit-linear-gradient(13deg, #ffd4f4 14%, #d2c5fc 73%);
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 3px 3px 6px #e8e8e8;
+  font-size: large;
+  padding: 2rem;
+  margin: 2.5rem;
+}
+
 .legendInfo {
   background: #ffe0f5;
   border-radius: 10px 10px 10px 10px;
@@ -28,7 +49,7 @@
   text-align: center;
   margin: 5px;
   padding: 5px;
-  width: 70%;
+  width: 67%;
   margin-left: 13%;
   padding-left: 1.5rem;
 }

@@ -30,9 +30,12 @@ export default function SortPage() {
     const [code, setCode] = useState([]);
     const [isSelection, setSelection] = useState(false);
     const [isQuick, setQuick] = useState(false);
+    const [line, setLine] = useState(null);
+
     useEffect(() => {
         setCurrent(iter.current.list);
         setWhy(iter.current.why);
+        setLine(iter.current.line);
     }, [iter]);
 
     function onClickBind(f: () => void): () => void {
@@ -40,6 +43,7 @@ export default function SortPage() {
             f.bind(iter)();
             setCurrent(iter.current.list);
             setWhy(iter.current.why);
+            setLine(iter.current.line);
         };
     }
     function Legends() {
@@ -52,7 +56,7 @@ export default function SortPage() {
             {
                 isSelection?<div style={{display:"flex",flexDirection: "row",}}>
                 <div style={{backgroundColor:"#55efc4",height:"20px",width:"20px",marginRight:"5px"}} />
-                - Current Min Element</div>:null
+                - Min Element</div>:null
             }
             {
                 isQuick?<div style={{display:"flex",flexDirection: "row",}}>
@@ -62,6 +66,25 @@ export default function SortPage() {
             <div style={{display:"flex",flexDirection: "row",}}>
             <div style={{backgroundColor:"#fd79a8",height:"20px",width:"20px",marginRight:"5px"}} />
             - Sorted Element</div>
+        </div>
+        )
+    }
+    function CodeHighlighter() {
+        return (
+            <div className={styles.codeInputDiv}>
+            {
+                code?code.map((item, idx)=> (
+                        <div className={styles.Line} key={idx} >
+                            {
+                                idx==line?
+                                    <div style={{color:"#575fcf"}} >{item}</div>
+                                 :
+                                <div style={{color: "#ff3f34"}}>{item}</div>
+                            }
+                        </div>
+                    )
+                ):null
+            }
         </div>
         )
     }
@@ -95,7 +118,8 @@ export default function SortPage() {
                         return {n: x.Value, key: x.Key, color: x.Color};
                     }
                 ),
-                why: w.why
+                why: w.why,
+                line: w.line
             };
         });
         setIter(new ItemIterator(result));
@@ -185,18 +209,7 @@ export default function SortPage() {
                 <Legends />
             </div>
         </div>
-        <div className={styles.codeInputDiv}>
-            {
-                code?code.map(item=> (
-                        <div className={styles.codeTextStyle}>
-                            <Typography className={styles.sortButtonText}>
-                                <b>{item}</b>
-                            </Typography>  
-                        </div>
-                    )
-                ):null
-            }
-        </div>
+        <CodeHighlighter />
         <br/>
         <br/>
     </div>;

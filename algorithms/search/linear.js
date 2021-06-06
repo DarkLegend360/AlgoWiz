@@ -2,7 +2,7 @@ function makeCopy(arr) {
     return arr.map((item)=>({
         Value: item.Value,
         Key: item.Key,
-        Color: item.Color
+        Color: item.Color,
     }));
 }
 
@@ -20,7 +20,8 @@ export default function linearSearch(arr, target) {
     //Starting Pos
     result.push({
         list:makeCopy(arr),
-        why:"Starting Position"
+        why:"Starting Position",
+        line:null
     });
 
     for(var i=0;i<arr.length;i++) {
@@ -29,20 +30,23 @@ export default function linearSearch(arr, target) {
             let temp = makeCopy(arr);
             result.push({
                 list:temp,
-                why:`${arr[i].Value} == ${target}, Matched!`
+                why:`${arr[i].Value} == ${target}, Matched!`,
+                line:2
             });
         } else {
             let temp = makeCopy(arr);
             temp[i].Color = "#c0deff";
             result.push({
                 list:temp,
-                why:`${arr[i].Value} != ${target}, Mismatch!`
+                why:`${arr[i].Value} != ${target}, Mismatch!`,
+                line:1
             });
         }
     }
     result.push({
         list:makeCopy(arr),
-        why:"Done"
+        why:"Done",
+        line:null
     });
     return result;
 }

@@ -5,13 +5,13 @@ export const Pangolin = {fontFamily: "Pangolin, cursive"};
 export const OpenSans = {fontFamily: "Open Sans, sans-serif"};
 
 export class ItemIterator {
-    values: Array<{list:[], why: ""}>;
-    current: {list:[], why: ""};
+    values: Array<{list:[], why: "", line:null}>;
+    current: {list:[], why: "", line:null};
     index: number;
 
-    constructor(values: Array<{list:[], why: ""}>) {
+    constructor(values: Array<{list:[], why: "", line: null}>) {
         this.values = values;
-        this.current = this.values[0] || {list: [], why: ""};
+        this.current = this.values[0] || {list: [], why: "", line:null};
         this.index = 0;
     }
 

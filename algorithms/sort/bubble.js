@@ -20,7 +20,8 @@ export default function bubbleSort(arr) {
     //Starting Pos
     result.push({
         list:makeCopy(arr),
-        why:"Starting Position"
+        why:"Starting Position",
+        line:null
     });
 
     var swapped = true;
@@ -29,13 +30,22 @@ export default function bubbleSort(arr) {
         swapped=false;
         for(var j=0;j<arr.length-1-i;j++) {
             if(arr[j].Value > arr[j+1].Value) {
-                [arr[j],arr[j+1]] = [arr[j+1], arr[j]];
                 let temp = makeCopy(arr);
                 temp[j].Color = "#c0deff";
                 temp[j+1].Color = "#c0deff";
                 result.push({
                     list:temp,
-                    why:`${arr[j+1].Value} > ${arr[j].Value}, flip!`
+                    why:`${arr[j+1].Value} > ${arr[j].Value}, !`,
+                    line:2
+                });
+                [arr[j],arr[j+1]] = [arr[j+1], arr[j]];
+                temp = makeCopy(arr);
+                temp[j].Color = "#c0deff";
+                temp[j+1].Color = "#c0deff";
+                result.push({
+                    list:temp,
+                    why:`Flip!`,
+                    line:3
                 });
                 swapped=true;
             } else {
@@ -44,14 +54,16 @@ export default function bubbleSort(arr) {
                 temp[j+1].Color = "#c0deff";
                 result.push({
                     list:temp,
-                    why:`${arr[j].Value} <= ${arr[j+1].Value}, ignore!`
+                    why:`${arr[j].Value} <= ${arr[j+1].Value}, ignore!`,
+                    line:2
                 });
             }
         }
         arr[arr.length-1-i].Color="#fd79a8";
         result.push({
             list:makeCopy(arr),
-            why:`Iteration ${i+1} over!`
+            why:`Iteration ${i+1} over!`,
+            line:null
         });
     }
     let temp = makeCopy(arr);
@@ -59,11 +71,13 @@ export default function bubbleSort(arr) {
         temp[i].Color="#fd79a8";
     result.push({
         list:temp,
-        why:"Nothing swapped, which means the array is sorted!"
+        why:"Nothing swapped, which means the array is sorted!",
+        line:null
     });
     result.push({
         list:temp,
-        why:"Done"
+        why:"Done",
+        line:null
     });
     return result;
 }

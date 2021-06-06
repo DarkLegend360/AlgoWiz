@@ -28,10 +28,12 @@ export default function SearchPage() {
     const [why, setWhy] = useState("");
     const [code, setCode] = useState([]);
     const [isBinary, setBinary] = useState(false);
+    const [line, setLine] = useState(null);
 
     useEffect(() => {
         setCurrent(iter.current.list);
         setWhy(iter.current.why);
+        setLine(iter.current.line);
     }, [iter]);
 
     function onClickBind(f: () => void): () => void {
@@ -39,6 +41,7 @@ export default function SearchPage() {
             f.bind(iter)();
             setCurrent(iter.current.list);
             setWhy(iter.current.why);
+            setLine(iter.current.line);
         };
     }
 
@@ -64,11 +67,14 @@ export default function SearchPage() {
         return (
             <div className={styles.codeInputDiv}>
             {
-                code?code.map(item=> (
-                        <div className={styles.codeTextStyle}>
-                            <Typography className={styles.sortButtonText}>
-                                <b>{item}</b>
-                            </Typography>  
+                code?code.map((item, idx)=> (
+                        <div className={styles.Line} key={idx} >
+                            {
+                                idx==line?
+                                    <div style={{color:"#575fcf"}} >{item}</div>
+                                 :
+                                <div style={{color: "#ff3f34"}}>{item}</div>
+                            }
                         </div>
                     )
                 ):null
@@ -97,10 +103,11 @@ export default function SearchPage() {
                         return {n: x.Value, key: x.Key, color: x.Color};
                     }
                 ),
-                why: w.why
+                why: w.why,
+                line: w.line
             };
         });
-        setIter(new ItemIterator(result));
+        setIter(new ItemIterator(result));       
     }
     return <div>
         <Head>

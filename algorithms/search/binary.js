@@ -20,7 +20,8 @@ export default function linearSearch(arr, target) {
     //Starting Pos
     result.push({
         list:makeCopy(arr),
-        why:"Starting Position"
+        why:"Starting Position",
+        line:null
     });
     var leftIdx=0;
     var rightIdx=arr.length-1;
@@ -35,7 +36,8 @@ export default function linearSearch(arr, target) {
             temp[middleIdx].Color = "#fd79a8";
             result.push({
                 list:temp,
-                why:`${arr[middleIdx].Value} == ${target}, Matched!`
+                why:`${arr[middleIdx].Value} == ${target}, Matched!`,
+                line: 3
             });
             break;
         } else if(arr[middleIdx].Value>target) {
@@ -45,7 +47,8 @@ export default function linearSearch(arr, target) {
             temp[middleIdx].Color = "#55efc4";
             result.push({
                 list:temp,
-                why:`${arr[middleIdx].Value} > ${target}, Mismatch , Adjusting Right Bound!`
+                why:`${arr[middleIdx].Value} > ${target}, Mismatch , Adjusting Right Bound!`,
+                line: 7
             });
             rightIdx=middleIdx-1;
         } else {
@@ -55,7 +58,8 @@ export default function linearSearch(arr, target) {
             temp[middleIdx].Color = "#55efc4";
             result.push({
                 list:temp,
-                why:`${arr[middleIdx].Value} < ${target}, Mismatch , Adjusting Left Bound!`
+                why:`${arr[middleIdx].Value} < ${target}, Mismatch , Adjusting Left Bound!`,
+                line:5
             });
             leftIdx=middleIdx+1;
         }
@@ -63,7 +67,8 @@ export default function linearSearch(arr, target) {
     if(arr[middleIdx].Value!=target) {
         result.push({
             list:makeCopy(arr),
-            why:"Element was not found!"
+            why:"Element was not found!",
+            line:null
         });
     }
     result.push({
