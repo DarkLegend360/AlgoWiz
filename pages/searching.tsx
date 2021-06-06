@@ -71,9 +71,9 @@ export default function SearchPage() {
                         <div className={styles.Line} key={idx} >
                             {
                                 idx==line?
-                                    <div style={{color:"#575fcf"}} >{item}</div>
+                                    <div style={{color:"#d63031"}} >{item}</div>
                                  :
-                                <div style={{color: "#ff3f34"}}>{item}</div>
+                                <div style={{color: "#6c5ce7"}}>{item}</div>
                             }
                         </div>
                     )
@@ -115,78 +115,78 @@ export default function SearchPage() {
         </Head>
         <Nav/>
         <div className={styles.mainCards}>
-        <div className={styles.cardInputDiv}>
-        <TextField id="filled-basic" 
-            color="primary" 
-            label="Target Element" 
-            variant="filled" 
-            size="small" 
-            value={`${target}`} 
-            onChange={(e)=>setTarget(Number(e.target.value))} 
-        />
-            <ListInput default={SortDefault} onChange={setItems}/>
-            
-            <br/>
 
-            <Button style={{...noBorder}} className={styles.sortButton} onClick={()=>fetchResult("linear")}>
-                <Typography className={styles.sortButtonText}>
-                    <b>Linear Search</b>
-                </Typography>
-            </Button>
+            <div className={styles.cardDiv}>
+                <FlipMove className={styles.resultDiv}>
+                    {current ? current.map((e) =>
+                        <div key={e.key} className={styles.resultItem} style={
+                            {
+                                height: current.map(x => x.n) + "6rem",
+                                backgroundColor: e.color,
+                            }
+                        }>
+                            <Typography style={{...OpenSans}} className="text-center">
+                                {e.n}
+                            </Typography>
+                        </div>) : null}
+                </FlipMove>
 
-            <Button style={{...noBorder, marginLeft: "20px"}} className={styles.sortButton} onClick={()=>fetchResult("binary")}>
-                <Typography className={styles.sortButtonText}>
-                    <b>Binary Search</b>
-                </Typography>
-            </Button>
-        </div>
+                <div>
+                    <Typography style={{...Roboto}} className="text-center">
+                        {why}
+                    </Typography>
+                    <br/>
+                </div>
 
-        <div className={styles.cardDiv}>
-            <FlipMove className={styles.resultDiv}>
-                {current ? current.map((e) =>
-                    <div key={e.key} className={styles.resultItem} style={
-                        {
-                            height: current.map(x => x.n) + "6rem",
-                            backgroundColor: e.color,
-                        }
-                    }>
-                        <Typography style={{...OpenSans}} className="text-center">
-                            {e.n}
-                        </Typography>
-                    </div>) : null}
-            </FlipMove>
-
-            <div>
-                <Typography style={{...Roboto}} className="text-center">
-                    {why}
-                </Typography>
+                <div className={styles.navigation}>
+                    <Tooltip title="Reset">
+                        <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.start)}>
+                            <FirstPageIcon/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Previous Step">
+                        <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.back)}>
+                            <NavigateBeforeIcon/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Next Step">
+                        <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.next)}>
+                            <NavigateNextIcon/>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Last Step">
+                        <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.end)}>
+                            <LastPageIcon/>
+                        </IconButton>
+                    </Tooltip>
+                </div>
+                <Legends />
+            </div>
+            <div className={styles.cardInputDiv}>
+            <TextField id="filled-basic" 
+                color="primary" 
+                label="Target Element" 
+                variant="filled" 
+                size="small" 
+                value={`${target}`} 
+                onChange={(e)=>setTarget(Number(e.target.value))} 
+            />
+                <ListInput default={SortDefault} onChange={setItems}/>
+                
                 <br/>
-            </div>
 
-            <div className={styles.navigation}>
-                <Tooltip title="Reset">
-                    <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.start)}>
-                        <FirstPageIcon/>
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Previous Step">
-                    <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.back)}>
-                        <NavigateBeforeIcon/>
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Next Step">
-                    <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.next)}>
-                        <NavigateNextIcon/>
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Last Step">
-                    <IconButton style={{...noBorder, marginLeft: "10px"}} onClick={onClickBind(iter.end)}>
-                        <LastPageIcon/>
-                    </IconButton>
-                </Tooltip>
+                <Button style={{...noBorder}} className={styles.sortButton} onClick={()=>fetchResult("linear")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Linear Search</b>
+                    </Typography>
+                </Button>
+
+                <Button style={{...noBorder, marginLeft: "20px"}} className={styles.sortButton} onClick={()=>fetchResult("binary")}>
+                    <Typography className={styles.sortButtonText}>
+                        <b>Binary Search</b>
+                    </Typography>
+                </Button>
             </div>
-            <Legends />
-        </div>
         </div>
         <CodeHighlighter />
         <br/>
