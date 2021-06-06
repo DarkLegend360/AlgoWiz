@@ -35,7 +35,7 @@ export default function bubbleSort(arr) {
                 temp[j+1].Color = "#c0deff";
                 result.push({
                     list:temp,
-                    why:`${arr[j+1].Value} > ${arr[j].Value}, !`,
+                    why:`${arr[j].Value} > ${arr[j+1].Value}, !`,
                     line:2
                 });
                 [arr[j],arr[j+1]] = [arr[j+1], arr[j]];
