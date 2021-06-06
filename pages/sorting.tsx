@@ -29,7 +29,7 @@ export default function SortPage() {
     const [why, setWhy] = useState("");
     const [code, setCode] = useState([]);
     const [isSelection, setSelection] = useState(false);
-
+    const [isQuick, setQuick] = useState(false);
     useEffect(() => {
         setCurrent(iter.current.list);
         setWhy(iter.current.why);
@@ -54,6 +54,11 @@ export default function SortPage() {
                 <div style={{backgroundColor:"#55efc4",height:"20px",width:"20px",marginRight:"5px"}} />
                 - Current Min Element</div>:null
             }
+            {
+                isQuick?<div style={{display:"flex",flexDirection: "row",}}>
+                <div style={{backgroundColor:"#55efc4",height:"20px",width:"20px",marginRight:"5px"}} />
+                - Pivot Element</div>:null
+            }
             <div style={{display:"flex",flexDirection: "row",}}>
             <div style={{backgroundColor:"#fd79a8",height:"20px",width:"20px",marginRight:"5px"}} />
             - Sorted Element</div>
@@ -63,6 +68,7 @@ export default function SortPage() {
     var curMode=null;
     function fetchResult(name) {
         setSelection(false);
+        setQuick(false);
         var result = [];
         curMode=name;
         if(name=="bubble"){
@@ -81,6 +87,7 @@ export default function SortPage() {
         else if(name=="quick") {
             result = quickSort(items);
             setCode(quickSortCode);
+            setQuick(true);
         }
         result = result.map(function (w) {
             return {
